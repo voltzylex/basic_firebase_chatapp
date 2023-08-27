@@ -17,11 +17,15 @@ class MyTextField extends StatelessWidget {
         controller: textEditingController,
         obscureText: obscureText,
         decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
             enabledBorder: OutlineInputBorder(
+              // change the radius of the text field
+              borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(width: 1, color: Colors.grey.shade200),
             ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: const BorderSide(color: Colors.white),
             ),
             filled: true,
             fillColor: Colors.grey.shade100,

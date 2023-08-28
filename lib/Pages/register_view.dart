@@ -1,23 +1,19 @@
-import 'dart:developer';
+import 'package:firebase_chat_app/imports.dart';
 
-import 'package:firebase_chat_app/Components/my_button.dart';
-import 'package:firebase_chat_app/Components/my_text_field.dart';
-import 'package:flutter/material.dart';
-
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterViewState extends State<RegisterView> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
-    log("Login screen");
+    log("Register View");
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade300,
@@ -40,16 +36,16 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
                 // Welcome Text
-                const Text("Welcome back you've been missed!"),
+                const Text("Lets Create a account for you"),
                 const SizedBox(
                   height: 10,
                 ),
                 // name TextField
-                // MyTextField(
-                //     textEditingController: nameController, hintText: "Name"),
-                // const SizedBox(
-                //   height: 5,
-                // ),
+                MyTextField(
+                    textEditingController: nameController, hintText: "Name"),
+                const SizedBox(
+                  height: 5,
+                ),
                 // Email TextField
                 MyTextField(
                     textEditingController: emailController, hintText: "Email"),
@@ -64,6 +60,15 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 // Sign in button
                 const SizedBox(
+                  height: 5,
+                ),
+                MyTextField(
+                  textEditingController: passwordController,
+                  hintText: "Confirm Password",
+                  obscureText: true,
+                ),
+                // Sign in button
+                const SizedBox(
                   height: 10,
                 ),
                 MyButton(
@@ -74,20 +79,13 @@ class _LoginPageState extends State<LoginPage> {
                   height: 25,
                 ),
                 //  Not a member register now
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text("Not a member? "),
-                    TextButton(
-                      onPressed: () => Navigator.pushNamed(context, "register"),
-                      style: const ButtonStyle(
-                          // backgroundColor: Colors.black,
-                          // overlayColor: Colors.black,
-                          ),
-                      child: const Text(
-                        "Register Now",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    Text("Not a member? "),
+                    Text(
+                      "Register Now",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

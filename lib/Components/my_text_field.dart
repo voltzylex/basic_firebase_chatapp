@@ -17,6 +17,8 @@ class MyTextField extends StatelessWidget {
         controller: textEditingController,
         obscureText: obscureText,
         decoration: InputDecoration(
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
             enabledBorder: OutlineInputBorder(
               // change the radius of the text field

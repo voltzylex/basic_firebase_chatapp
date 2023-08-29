@@ -5,8 +5,8 @@ import 'package:firebase_chat_app/Components/my_text_field.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
+  const LoginPage({super.key, required this.onTap});
+  final Function() onTap;
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -16,7 +16,8 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
+    // final TextEditingController nameController = TextEditingController();
+  
     log("Login screen");
     return SafeArea(
       child: Scaffold(
@@ -79,11 +80,15 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Text("Not a member? "),
                     TextButton(
-                      onPressed: () => Navigator.pushNamed(context, "register"),
+                      onPressed: widget.onTap,
+                      // () => Navigator.pushNamed(context, "register"),
                       style: const ButtonStyle(
-                          // backgroundColor: Colors.black,
-                          // overlayColor: Colors.black,
-                          ),
+                          padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+                              EdgeInsets.zero),
+                          // backgroundColor:
+                          //     MaterialStatePropertyAll(Colors.amberAccent),
+                          foregroundColor:
+                              MaterialStatePropertyAll(Colors.black)),
                       child: const Text(
                         "Register Now",
                         style: TextStyle(fontWeight: FontWeight.bold),

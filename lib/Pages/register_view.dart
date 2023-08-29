@@ -1,13 +1,13 @@
 import 'package:firebase_chat_app/imports.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
-
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.onTap});
+  final Function() onTap;
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
@@ -72,20 +72,33 @@ class _RegisterViewState extends State<RegisterView> {
                   height: 10,
                 ),
                 MyButton(
-                  text: "Sign in",
+                  text: "Sign up",
                   onTap: () {},
                 ),
                 const SizedBox(
                   height: 25,
                 ),
                 //  Not a member register now
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Not a member? "),
-                    Text(
-                      "Register Now",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    const Text("Already a member?"),
+                    TextButton(
+                      onPressed: widget.onTap,
+                      // () {
+                      //   Navigator.pop(context);
+                      // },
+                      style: const ButtonStyle(
+                          padding: MaterialStatePropertyAll<EdgeInsetsGeometry>(
+                              EdgeInsets.zero),
+                          // backgroundColor:
+                          //     MaterialStatePropertyAll(Colors.amberAccent),
+                          foregroundColor:
+                              MaterialStatePropertyAll(Colors.black)),
+                      child: const Text(
+                        "Login Now",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),

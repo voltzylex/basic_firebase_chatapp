@@ -1,8 +1,5 @@
-import 'dart:developer';
-
-import 'package:firebase_chat_app/Components/my_button.dart';
-import 'package:firebase_chat_app/Components/my_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:firebase_chat_app/Services/auth/auth_services.dart';
+import 'package:firebase_chat_app/imports.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.onTap});
@@ -12,12 +9,26 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+// Text controllers
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+// sign in function
+  void signIn() async {
+    final authService = Provider.of<AuthServices>(context, listen: false);
+    try {
+      final data = await authService.signInWithEmailAndPassword(
+          emailController.text, passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+      log("Login view catch : $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
     // final TextEditingController nameController = TextEditingController();
-  
+
     log("Login screen");
     return SafeArea(
       child: Scaffold(
@@ -69,7 +80,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 MyButton(
                   text: "Sign in",
-                  onTap: () {},
+                  onTap: () {
+                    signIn();
+                  },
                 ),
                 const SizedBox(
                   height: 25,

@@ -1,4 +1,4 @@
-import 'package:firebase_chat_app/Services/auth/auth_services.dart';
+
 import 'package:firebase_chat_app/imports.dart';
 
 class HomePage extends StatelessWidget {

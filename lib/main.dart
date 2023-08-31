@@ -8,8 +8,17 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthServices(),
+    // Single Provider
+    /* ChangeNotifierProvider(
+       create: (context) => AuthServices(),
+       child: const MainApp(),
+     ), */
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthServices(),
+        ),
+      ],
       child: const MainApp(),
     ),
   );

@@ -10,7 +10,21 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPassword = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  // Sign Up
+  Future signUp() async {
+    log("Sign up called");
+    final auth = Provider.of<AuthServices>(context, listen: false);
+    try {
+      final signUp = await auth.signUpWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     log("Register View");
@@ -63,7 +77,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 5,
                 ),
                 MyTextField(
-                  textEditingController: passwordController,
+                  textEditingController: confirmPassword,
                   hintText: "Confirm Password",
                   obscureText: true,
                 ),
@@ -73,7 +87,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 MyButton(
                   text: "Sign up",
-                  onTap: () {},
+                  onTap: () {
+                    if (passwordController.text != confirmPassword.text) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text(
+                              "Password and Confirm Password are not same")));
+                      return;
+                    } else {
+                      signUp();
+                      return;
+                    }
+                  },
                 ),
                 const SizedBox(
                   height: 25,

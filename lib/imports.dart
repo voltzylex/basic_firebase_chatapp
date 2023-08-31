@@ -8,3 +8,4 @@ export  'package:firebase_auth/firebase_auth.dart';
 export 'package:firebase_chat_app/Services/auth/auth_gate.dart';
 export 'package:firebase_chat_app/Services/login_or_register.dart';
 export 'package:provider/provider.dart';
+export 'package:firebase_chat_app/Services/auth/auth_services.dart';

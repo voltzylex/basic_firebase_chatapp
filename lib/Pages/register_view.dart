@@ -17,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
     log("Sign up called");
     final auth = Provider.of<AuthServices>(context, listen: false);
     try {
-      final signUp = await auth.signUpWithEmailAndPassword(
+      final signUp = await auth.signUpWithEmailAndPassword(name:nameController.text,
           email: emailController.text, password: passwordController.text);
     } catch (e) {
       ScaffoldMessenger.of(context)

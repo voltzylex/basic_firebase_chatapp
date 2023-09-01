@@ -9,3 +9,5 @@ export 'package:firebase_chat_app/Services/auth/auth_gate.dart';
 export 'package:firebase_chat_app/Services/login_or_register.dart';
 export 'package:provider/provider.dart';
 export 'package:firebase_chat_app/Services/auth/auth_services.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
+export 'package:firebase_chat_app/Models/messages_model.dart';
